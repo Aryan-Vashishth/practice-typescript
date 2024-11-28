@@ -1,0 +1,6 @@
+[
+	{
+		"keys": "ctrl+r",
+		"command": "tsc && node app.js"
+	}
+]
