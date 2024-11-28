@@ -121,9 +121,9 @@ enum Validation {
 
     passwordFieldAdvanced = `Password must meet the following requirements:
     - At least 8 characters in length.
-    - Contains at least one uppercase letter(A–Z).
-    - Contains at least one lowercase letter(a–z).
-    - Contains at least one number(0–9).
+    - Contains at least one uppercase letter(A-Z).
+    - Contains at least one lowercase letter(a-z).
+    - Contains at least one number(0-9).
     - Contains at least one special character(!@#$ %^&*).
     - Does not contain spaces.`
 }
@@ -135,6 +135,37 @@ console.log(Validation.passwordFieldAdvanced);
 
 //----------------------Any Type-----------------------------------------------(We use 'any type' typically when you're  in a very complex situation and you'r not able to predict what the type of the variables gonna be)--------------------
 
+let value1: any = 1; // Avoid using "any" if you can.
+
+
+
+//----------------------------Unknown Type----------------(is a type which is safe counterpart to the "any type")-------------------
+//---------------------("Unknown Type" provides a powerful way to handle values of uncertain types while maintaining type safety)
+
+let value2: unknown = 10;
+// console.log(value2 + 1); This will throw an error because type is unknown.
+
+if (typeof value2 == "number") {
+    console.log(value2++);
+}
+else if (typeof value2 == "string") {
+    console.log(value2.length);
+}
+//else { This will also throw an error because type is unknown.
+//    value2--;
+
+
+
+
+//------------------------------Type Casting---------------------------------------------------------
+
+let value3: unknown = 100;
+// Casting `value3` to a number allows us to safely perform arithmetic operations.
+console.log((value3 as number) + 1); // Casts `value3` as a number and adds 1 successfully.
+
+// console.log(value3 + 1); would throw an error because `value3` is of type `unknown`
+// and cannot be used in arithmetic operations without "explicit" casting.
+// console.log(value3 + 1);
 
 
 

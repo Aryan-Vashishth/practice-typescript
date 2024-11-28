@@ -77,7 +77,24 @@ var Validation;
 (function (Validation) {
     Validation["emailField"] = "'@' symbol should be present";
     Validation["passwordFieldBasic"] = "At least 8 characters is required";
-    Validation["passwordFieldAdvanced"] = "Password must meet the following requirements:\n    - At least 8 characters in length.\n- Contains at least one uppercase letter(A\uFFFDZ).\n- Contains at least one lowercase letter(a\uFFFDz).\n- Contains at least one number(0\uFFFD9).\n- Contains at least one special character(!@#$ %^&*).\n- Does not contain spaces.";
+    Validation["passwordFieldAdvanced"] = "Password must meet the following requirements:\n    - At least 8 characters in length.\n    - Contains at least one uppercase letter(A-Z).\n    - Contains at least one lowercase letter(a-z).\n    - Contains at least one number(0-9).\n    - Contains at least one special character(!@#$ %^&*).\n    - Does not contain spaces.";
 })(Validation || (Validation = {}));
 console.log(Validation.passwordFieldAdvanced);
+//----------------------Any Type-----------------------------------------------(We use 'any type' typically when you're  in a very complex situation and you'r not able to predict what the type of the variables gonna be)--------------------
+let value1 = 1; // Avoid using "any" if you can.
+//----------------------------Unknown Type----------------(is a type which is safe counterpart to the "any type")-------------------
+//---------------------("Unknown Type" provides a powerful way to handle values of uncertain types while maintaining type safety)
+let value2 = 10;
+// console.log(value2 + 1); This will throw an error because type is unknown.
+if (typeof value2 == "number") {
+    console.log(value2++);
+}
+else if (typeof value2 == "string") {
+    console.log(value2.length);
+}
+//else { This will also throw an error because type is unknown.
+//    value2--;
+//------------------------------Type Casts---------------------------------------------------------
+let value3 = 100;
+console.log(value2 + 1); //casted value2 as number
 //# sourceMappingURL=app.js.map
