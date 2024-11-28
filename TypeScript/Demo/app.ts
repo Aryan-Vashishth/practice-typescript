@@ -133,4 +133,11 @@ console.log(Validation.passwordFieldAdvanced);
 
 
 
+//----------------------Any Type-----------------------------------------------(We use 'any type' typically when you're  in a very complex situation and you'r not able to predict what the type of the variables gonna be)--------------------
+
+
+
+
+
+
 
