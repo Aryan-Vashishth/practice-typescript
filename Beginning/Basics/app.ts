@@ -1,3 +1,5 @@
+
+
 //--------------------Primitive Data types------------------------------
 
 let x: number;
@@ -169,5 +171,155 @@ console.log((value3 as number) + 1); // Casts `value3` as a number and adds 1 su
 
 
 
+//------------------------------------Optional Chaining ("Question mark" '?')-------------------------------------------------------
+//                 (allows us to check and deadl with undefined values within Typescript)
+
+const arr1 = [{ name: "Tim" }, { name: "Joe" }, { name: "Ray" }];
+
+const el = arr1.pop(); // ".pop() removes/returns the last element from the array"
+console.log(el);
+
+//const el2 = arr1.pop().name; // this will throw an error as value inside the "name" property of last element/object could possibly be undefined
+
+const el2 = arr1.pop()?.name;
+console.log(el2);
+// The ?. operator checks whether the value before it is null or undefined before trying to access a property or method.
+// If the value is null or undefined, it prevents further access and evaluates to undefined instead of throwing an error.
+// In this case, ?.name safely attempts to access the name property of the object returned by pop().
 
 
+
+
+
+
+
+
+//-------------------------------------------Bang ("Exclamation point" '!')------------------------------------------------------------
+
+const el3 = arr1.pop()!.name;
+// Tells TypeScript to ignore null or undefined checks for the result
+// Only use ! if you can guarantee the value won't be null or undefined
+console.log(el3);
+
+
+
+
+
+
+//------------------------------------------------Basic Function Types---------------------------------------------------------------------
+
+
+
+//==========================Example of a basic function that adds two numbers=============================================>>
+
+function add(x: number, y: number): number /* |string */{  
+    return x + y;
+    
+    // if(x == 0 && y == 0){ 
+    //     return "invalid";  //---------> This will throw an error as we are expecting the function to return a "number".
+    // }
+}
+const result = add(50, 100);
+console.log(result);
+
+
+
+
+
+//============================Basic function to make a name==========================================================>>
+
+
+function makeName(firstName: string, lastName: string, middleName?: string){
+    // The "?" after middleName marks it as an optional parameter.
+    // This allows the function to be called with or without a middleName.
+
+    if (middleName){ 
+        return firstName + " " + middleName + " " + lastName;
+    }
+    else{
+        return firstName + " " + lastName;
+    }
+}
+
+const fullName = makeName("Stephen", "Hawking");
+console.log(fullName);
+
+
+function callFunc(  //callFunc take 4 parametres 
+    func: (f: string, l: string, m?: string) => string, 
+    // First parameter name is "func" which a function itself that matches a particular type signature
+    // func - A function that takes 2 required strings (f and l) and an optional third string (m), and returns a string.
+
+    param1: string, // string to pass as the 1st argument.
+    param2: string, // string to pass as the 2nd argument.
+    param3?: string // string to pass as the 3rd argument.
+){
+    // Usage=>
+    console.log(func(param1, param2, param3));
+    // "func" is the function parameter passed to callFunc.
+    // This line calls the function func with param1, param2, and param3 as its arguments. 
+}
+callFunc(makeName, "Dr", "Albert", "Einstein"); // callFunc is called and done its job.
+
+
+
+
+
+//======================Basic function to perform different mathematical operations==============================================================================>>
+
+
+// Define a multiplication function that takes two numbers and returns their product
+function mul(x: number, y: number): number {
+    return x * y;
+}
+
+// Define a division function that takes two numbers and returns the quotient
+function div(x: number, y: number): number {
+    return x / y;
+}
+
+// Define a subtraction function that takes two numbers and returns the difference
+function sub(x: number, y: number): number {
+    return x - y;
+}
+
+// Define a function to apply an array of functions to their respective value pairs
+function applyFunc(
+    funcs: ((a: number, b: number) => number)[], // Array of functions that take two number arguments and return a number
+    values: [number, number][] // Array of pairs of numbers to use as arguments for the functions
+): number[] {
+    // Initialize an empty array to store the results
+    const results = [] as number[];
+
+    // Loop through each function in the funcs array
+    for (let i = 0; i < funcs.length; i++) {
+
+        // Debug statement: Log the length of the funcs array on the first iteration
+        if (i == 0) { 
+            console.log("func Length: " + funcs.length);
+        }
+
+        // Extract the argument pair from the values array
+        const args = values[i];
+
+        // Apply the current function to the current pair of arguments
+        const result = funcs[i](args[0], args[1]);
+
+        // Store the result in the results array
+        results.push(result);
+    }
+
+    // Return the array of results
+    return results;
+}
+
+// Example usage of applyFunc
+console.log(applyFunc(
+    [mul, div, add, sub], // Array of functions to apply
+    [
+        [2, 2],        // Arguments for the multiply function
+        [100, 25],     // Arguments for the divide function
+        [50, 50],      // Arguments for the add function (Refer to the first line of "Basic Function Types")
+        [1000, 1000],  // Arguments for the subtract function
+    ]
+));
