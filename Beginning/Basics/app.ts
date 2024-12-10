@@ -134,7 +134,9 @@ console.log(Validation.passwordFieldAdvanced);
 
 
 
-//----------------------Any Type-----------------------------------------------(We use 'any type' typically when you're  in a very complex situation and you'r not able to predict what the type of the variables gonna be)--------------------
+//---------------------------------------------------------------------------------Any Type---------------------------------------------------------------------------------------------------
+
+//-----------------------------(We use 'any type' typically when you're  in a very complex situation and you'r not able to predict what the type of the variables gonna be)--------------------
 
 let value1: any = 1; // Avoid using "any" if you can.
 
@@ -284,7 +286,7 @@ function sub(x: number, y: number): number {
 }
 
 // Define a function to apply an array of functions to their respective value pairs
-function applyFunc(
+function applyMaths(
     funcs: ((a: number, b: number) => number)[], // Array of functions that take two number arguments and return a number
     values: [number, number][] // Array of pairs of numbers to use as arguments for the functions
 ): number[] {
@@ -302,6 +304,9 @@ function applyFunc(
         // Extract the argument pair from the values array
         const args = values[i];
 
+        // Debug statement: Log the arguments
+        console.log("args = " + args);
+
         // Apply the current function to the current pair of arguments
         const result = funcs[i](args[0], args[1]);
 
@@ -314,7 +319,7 @@ function applyFunc(
 }
 
 // Example usage of applyFunc
-console.log(applyFunc(
+console.log(applyMaths(
     [mul, div, add, sub], // Array of functions to apply
     [
         [2, 2],        // Arguments for the multiply function
